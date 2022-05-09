@@ -38,7 +38,6 @@ module.exports = {
                                         email: data[0]["user_email"],
                                         name: data[0]["user_name"],
                                         role: data[0]["user_role"],
-                                        status: data[0]["user_status"],
                                     },
                                     JWTSECRET
                                 );

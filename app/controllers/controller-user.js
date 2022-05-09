@@ -51,4 +51,42 @@ module.exports = {
             });
         }
     },
+    register(req, res) {
+        try {
+            let pass = bcrypt.hashSync(req.body.password, 10);
+            pool.getConnection(function (err, connection) {
+                if (err) throw err;
+                connection.query(
+                    "INSERT INTO users SET ? ",
+                    {
+                        user_email: req.body.email,
+                        user_name: req.body.name,
+                        user_password: pass,
+                        user_phone: req.body.phone,
+                        user_role: req.body.role,
+                        user_status: req.body.status,
+                        user_created_at: new Date(),
+                        user_updated_at: new Date(),
+                    },
+                    function (error, results) {
+                        if (error)
+                            return res.status(400).send({
+                                success: false,
+                                message: error,
+                            });
+                        return res.status(200).send({
+                            success: true,
+                            data: results,
+                        });
+                    }
+                );
+                connection.release();
+            });
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                message: error,
+            });
+        }
+    },
 };

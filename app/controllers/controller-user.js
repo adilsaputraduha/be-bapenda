@@ -1,6 +1,9 @@
 const config = require("../config/database");
 const bcrypt = require("bcryptjs");
 
+const jwt = require("jsonwebtoken");
+const { JWTSECRET } = require("../config/jwt");
+
 const mysql = require("mysql");
 const pool = mysql.createPool(config);
 
@@ -30,9 +33,18 @@ module.exports = {
                                     message: "Password does not match",
                                 });
                             } else {
+                                let token = jwt.sign(
+                                    {
+                                        email: data[0]["user_email"],
+                                        name: data[0]["user_name"],
+                                        role: data[0]["user_role"],
+                                        status: data[0]["user_status"],
+                                    },
+                                    JWTSECRET
+                                );
                                 return res.status(200).send({
                                     success: true,
-                                    message: "Login successfully",
+                                    token: "Bearer" + " " + token,
                                 });
                             }
                         } else {
@@ -63,7 +75,6 @@ module.exports = {
                         user_email: req.body.email,
                         user_name: req.body.name,
                         user_password: pass,
-                        user_phone: req.body.phone,
                         user_role: req.body.role,
                         user_status: req.body.status,
                         user_created_at: new Date(),

@@ -11,7 +11,7 @@ pool.on("error", (err) => {
 module.exports = {
     login(req, res) {
         try {
-            let username = req.body.username;
+            let email = req.body.email;
             let password = req.body.password;
             pool.getConnection(function (err, connection) {
                 if (err) throw err;
@@ -19,7 +19,7 @@ module.exports = {
                     `
                     SELECT * FROM tb_users WHERE user_status = 1 AND user_email = ? LIMIT 1;
                     `,
-                    [username],
+                    [email],
                     function (err, data) {
                         if (data[0]) {
                             let validPassword = bcrypt.compareSync(password, data[0]["user_password"]);
@@ -57,7 +57,7 @@ module.exports = {
             pool.getConnection(function (err, connection) {
                 if (err) throw err;
                 connection.query(
-                    "INSERT INTO users SET ? ",
+                    "INSERT INTO tb_users SET ? ",
                     {
                         user_email: req.body.email,
                         user_name: req.body.name,

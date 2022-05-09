@@ -17,12 +17,12 @@ module.exports = {
                 if (err) throw err;
                 connection.query(
                     `
-                    SELECT * FROM users WHERE isActive = 1 AND nik = ? LIMIT 1;
+                    SELECT * FROM tb_users WHERE user_status = 1 AND user_email = ? LIMIT 1;
                     `,
                     [username],
                     function (err, data) {
                         if (data[0]) {
-                            let validPassword = bcrypt.compareSync(password, data[0]["password"]);
+                            let validPassword = bcrypt.compareSync(password, data[0]["user_password"]);
                             if (!validPassword) {
                                 return res.status(400).send({
                                     success: false,
@@ -31,7 +31,7 @@ module.exports = {
                             } else {
                                 return res.status(200).send({
                                     success: true,
-                                    token: "Bearer" + " " + token,
+                                    message: "Login successfully",
                                 });
                             }
                         } else {

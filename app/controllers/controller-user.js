@@ -23,6 +23,7 @@ module.exports = {
                     function (err, data) {
                         if (data[0]) {
                             let validPassword = bcrypt.compareSync(password, data[0]["user_password"]);
+                            console.log(data[0]["user_password"]);
                             if (!validPassword) {
                                 return res.status(400).send({
                                     success: false,

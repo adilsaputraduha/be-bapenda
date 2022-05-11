@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { JWTSECRET } = require("../config/jwt");
 
 const mysql = require("mysql");
-const pool = mysql.createPool(config);
+const pool = mysql.createPool(config.dbLocal);
 
 pool.on("error", (err) => {
     console.error(err);

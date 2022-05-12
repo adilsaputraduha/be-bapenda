@@ -30,7 +30,7 @@ module.exports = {
                             if (!validPassword) {
                                 return res.status(400).send({
                                     success: false,
-                                    message: "Password does not match",
+                                    message: "Password yang anda input salah!",
                                 });
                             } else {
                                 let token = jwt.sign(
@@ -49,7 +49,7 @@ module.exports = {
                         } else {
                             return res.status(400).send({
                                 success: false,
-                                message: "User not found",
+                                message: "Email belum terdaftar!",
                             });
                         }
                     }

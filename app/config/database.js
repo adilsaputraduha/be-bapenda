@@ -16,8 +16,8 @@ module.exports = {
     dbLocal: {
         multipleStatements: true,
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "db_bapenda",
+        user: "adil",
+        password: "bapenda4dil2022",
+        database: "db_bapenda_test",
     },
 };

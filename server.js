@@ -12,9 +12,13 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+    res.send("API Version : 2");
+});
+
 const appRoute = require("./app/routers/app-router");
 app.use("/", appRoute);
 
-app.listen(8080, () => {
-    console.log("Server Berjalan di Port : 8080");
+app.listen(80, () => {
+    console.log("Server Berjalan di Port : 80");
 });

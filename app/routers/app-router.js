@@ -6,7 +6,8 @@ router.post("/login", user.login);
 router.post("/register", user.register);
 
 // Posts
-router.get("/posts-recommended", post.getDataPosts);
+router.get("/posts-latest", post.getDataPostsLatest);
+router.get("/posts-longest", post.getDataPostsLongest);
 
 // Events
 router.get("/events", event.getDataEvent);

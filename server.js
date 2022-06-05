@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send("API Version : 2");
+    res.send("API Version : 3");
 });
 
 const appRoute = require("./app/routers/app-router");

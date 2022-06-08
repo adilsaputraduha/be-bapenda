@@ -9,8 +9,8 @@ module.exports = {
     dbLocal: {
         multipleStatements: true,
         host: "localhost",
-        user: "adil",
-        password: "bapenda4dil2022",
-        database: "db_bapenda_test",
+        user: "root",
+        password: "",
+        database: "db_bapenda",
     },
 };

@@ -1,8 +1,8 @@
-const config = require("../config/database");
+const config = require("../configs/database");
 const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
-const { JWTSECRET } = require("../config/jwt");
+const { JWTSECRET } = require("../configs/jwt");
 
 const mysql = require("mysql");
 const pool = mysql.createPool(config.dbLocal);

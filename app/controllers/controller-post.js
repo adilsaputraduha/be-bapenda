@@ -1,4 +1,4 @@
-const config = require("../config/database");
+const config = require("../configs/database");
 const mysql = require("mysql");
 const pool = mysql.createPool(config.dbLocal);
 

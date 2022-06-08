@@ -62,7 +62,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary mb-4 ms-1" data-bs-toggle="modal" data-bs-target="#addModal">Add new</button>
+                        <button class="btn btn-danger mb-4 ms-1" data-bs-toggle="modal" data-bs-target="#addModal">Add new</button>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered mb-2" id="table" style="width: 100%">
                                 <thead>
@@ -71,7 +71,7 @@
                                         <th>Description</th>
                                         <th>Image</th>
                                         <th>Url</th>
-                                        <th>Created At</th>
+                                        <th>Created</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -82,9 +82,9 @@
                                         <td><%= data.content_description %></td>
                                         <td><%= data.content_image %></td>
                                         <td><%= data.content_url %></td>
-                                        <td><%= moment(data.content_created_at).format( 'YYYY-MM-DD HH:mm:ss') %></td>
+                                        <td><%= moment(data.content_created_at).format( 'YYYY-MM-DD') %></td>
                                         <td class="text-center">
-                                            <a class="btn btn-primary btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#editModal<%= data.content_id %>">
+                                            <a class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#editModal<%= data.content_id %>">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     width="16"
@@ -98,7 +98,7 @@
                                                     />
                                                 </svg>
                                             </a>
-                                            <a class="btn btn-primary btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#deleteModal<%= data.content_id %>">
+                                            <a class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#deleteModal<%= data.content_id %>">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     width="16"
@@ -127,34 +127,43 @@
             </div>
         </div>
         <!-- Modal -->
-        <form action="/category/save" method="POST">
+        <form action="/administrator/content/save" method="POST">
             <div class="modal" tabindex="-1" id="addModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Add category</h5>
+                            <h5 class="modal-title">Add content</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="input-group">
-                                <input type="text" class="form-control" value="" name="name" placeholder="Type new category name ..." required />
+                                <input type="text" class="form-control" value="" name="title" placeholder="Type new content title ..." required />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control" value="" name="description" placeholder="Type new content description ..." required />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control" value="" name="image" placeholder="Type new content image ..." required />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control" value="" name="url" placeholder="Type new content url ..." required />
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-danger">Save</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
         <% content.forEach(function(data) { %>
-        <form action="/category/update" method="POST">
+        <form action="/administrator/content/update" method="POST">
             <div class="modal" tabindex="-1" id="editModal<%= data.content_id %>">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Update category</h5>
+                            <h5 class="modal-title">Update content</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -164,26 +173,56 @@
                                     type="text"
                                     class="form-control"
                                     value="<%= data.content_title %>"
-                                    name="name"
-                                    placeholder="Type new category name ..."
+                                    name="title"
+                                    placeholder="Type new content title ..."
+                                    required
+                                />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    value="<%= data.content_description%>"
+                                    name="description"
+                                    placeholder="Type new content description ..."
+                                    required
+                                />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    value="<%= data.content_image %>"
+                                    name="image"
+                                    placeholder="Type new content image ..."
+                                    required
+                                />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    value="<%= data.content_url %>"
+                                    name="url"
+                                    placeholder="Type new content url ..."
                                     required
                                 />
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-danger">Update</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-        <form action="/category/delete" method="POST">
+        <form action="/administrator/content/delete" method="POST">
             <div class="modal" tabindex="-1" id="deleteModal<%= data.content_id %>">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Delete category</h5>
+                            <h5 class="modal-title">Delete content</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -192,7 +231,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button type="submit" class="btn btn-danger">Yes</button>
                         </div>
                     </div>
                 </div>

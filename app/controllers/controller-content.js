@@ -39,6 +39,10 @@ module.exports = {
                 {
                     content_title: req.body.title,
                     content_description: req.body.description,
+                    content_image: req.body.image,
+                    content_url: req.body.url,
+                    content_updated_at: new Date(),
+                    content_created_at: new Date(),
                 },
                 function (error, results) {
                     if (error) throw error;

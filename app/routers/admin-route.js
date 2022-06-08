@@ -2,8 +2,10 @@ const router = require("express").Router();
 const { post, user, event, home, content } = require("../controllers");
 const verifyUser = require("../configs/verify");
 
-// Auth
 router.get("/", verifyUser.isLogin, home.home);
+
+// Content
 router.get("/content", verifyUser.isLogin, content.list);
+router.post("/content/save", verifyUser.isLogin, content.save);
 
 module.exports = router;

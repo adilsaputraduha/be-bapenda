@@ -24,7 +24,7 @@ a {
 }
 
 a:hover {
-    color: hsl(229, 76%, 66%);
+    color: hsl(0, 100%, 44%);
 }
 
 .nav-link {
@@ -32,7 +32,7 @@ a:hover {
 }
 
 .nav-link:hover {
-    color: hsl(229, 76%, 66%);
+    color: hsl(0, 100%, 40%);
 }
 
 ul {
@@ -47,7 +47,7 @@ ul {
 }
 
 .navbar-toggler {
-    background: hsl(229, 76%, 66%);
+    background: hsl(0, 100%, 44%);
     border: none;
     padding: 10px 6px;
     outline: none;
@@ -81,7 +81,7 @@ ul {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link.active {
-    color: hsl(229, 70%, 58%);
+    color: hsl(0, 100%, 44%);
 }
 
 .navbar-nav button {
@@ -89,7 +89,7 @@ ul {
 }
 
 .navbar-nav .btn {
-    background-color: hsl(229, 76%, 66%);
+    background-color: hsl(0, 100%, 44%);
     color: white;
     border-radius: 30px;
     padding: 0.7rem 1.5rem;
@@ -97,7 +97,7 @@ ul {
 }
 
 .navbar-nav .btn:hover {
-    background-color: hsl(229, 70%, 58%);
+    background-color: hsl(0, 100%, 40%);
 }
 
 .main {
@@ -190,7 +190,7 @@ ul {
 }
 
 .btnlogin:hover {
-    background-color: hsl(229, 76%, 66%);
+    background-color: hsl(0, 100%, 40%);
 }
 
 @media (max-width: 870px) {

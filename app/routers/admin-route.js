@@ -8,4 +8,7 @@ router.get("/", verifyUser.isLogin, home.home);
 router.get("/content", verifyUser.isLogin, content.list);
 router.post("/content/save", verifyUser.isLogin, content.save);
 
+// Event
+router.get("/event", verifyUser.isLogin, event.list);
+
 module.exports = router;

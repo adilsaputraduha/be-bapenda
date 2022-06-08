@@ -7,6 +7,27 @@ pool.on("error", (err) => {
 });
 
 module.exports = {
+    list(req, res) {
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query(
+                `
+                SELECT * FROM tb_events;
+                `,
+                function (error, results) {
+                    if (error) throw error;
+                    res.render("event", {
+                        url: URL,
+                        // urlFront: URLFRONT,
+                        userName: req.session.username,
+                        userId: req.session.id_user,
+                        event: results,
+                    });
+                }
+            );
+            connection.release();
+        });
+    },
     // Get data event
     getDataEvent(req, res) {
         pool.getConnection(function (err, connection) {

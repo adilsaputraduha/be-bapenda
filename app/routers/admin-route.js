@@ -6,7 +6,7 @@ router.get("/", verifyUser.isLogin, home.home);
 
 // Content
 router.get("/content", verifyUser.isLogin, content.list);
-router.post("/content/save", verifyUser.isLogin, content.save);
+router.post("/content/update", verifyUser.isLogin, content.update);
 
 // Event
 router.get("/event", verifyUser.isLogin, event.list);

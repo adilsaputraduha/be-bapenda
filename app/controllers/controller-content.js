@@ -2,7 +2,7 @@ const config = require("../configs/database");
 const moment = require("moment");
 
 let mysql = require("mysql");
-let pool = mysql.createPool(config.dbLocal);
+let pool = mysql.createPool(config.dbWordpress);
 
 pool.on("error", (err) => {
     console.error(err);
@@ -14,7 +14,7 @@ module.exports = {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM tb_contents;
+                SELECT * FROM ws_posts WHERE post_status = 'publish' AND post_content != '' ORDER BY ws_posts.ID ASC
                 `,
                 function (error, results) {
                     if (error) throw error;

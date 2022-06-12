@@ -4,6 +4,7 @@ const event = require("./controller-event");
 const login = require("./controller-login");
 const home = require("./controller-home");
 const content = require("./controller-content");
+const pbb = require("./controller-pbb");
 
 module.exports = {
     user,
@@ -12,4 +13,5 @@ module.exports = {
     login,
     home,
     content,
+    pbb,
 };

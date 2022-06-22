@@ -1,6 +1,6 @@
 const config = require("../configs/database");
 const mysql = require("mysql");
-const pool = mysql.createPool(config.dbLocal);
+const pool = mysql.createPool(config.dbWordpress);
 
 pool.on("error", (err) => {
     console.log(err);
@@ -13,7 +13,7 @@ module.exports = {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM tb_contents ORDER BY content_id DESC LIMIT 10;
+                SELECT * FROM ws_posts WHERE post_status = 'publish' AND post_content != '' ORDER BY ws_posts.ID DESC LIMIT 10;
                 `,
                 function (error, results) {
                     if (error) throw error;
@@ -33,7 +33,7 @@ module.exports = {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM tb_contents ORDER BY content_id ASC LIMIT 10;
+                SELECT * FROM ws_posts WHERE post_status = 'publish' AND post_content != '' ORDER BY ws_posts.ID ASC LIMIT 10;
                 `,
                 function (error, results) {
                     if (error) throw error;
